@@ -47,6 +47,30 @@ public class AddTwoNumbers {
         return head;
     }
 
+    /**
+     * 另一种简化算法
+     */
+    public ListNode addTwo(ListNode l1, ListNode l2) {
+        ListNode root = new ListNode();
+        ListNode cursor  = root;
+        int temp = 0;
+        while (l1 != null || l2 != null || temp != 0) {
+            int l1Val = l1 == null ? 0 : l1.val;
+            int l2Val = l2 == null ? 0 : l2.val;
+
+            l1 = l1 == null ? null : l1.next;
+            l2 = l2 == null ? null : l2.next;
+
+            int sum = l1Val + l2Val + temp;
+            temp = sum / 10;
+            ListNode sumNode = new ListNode(sum % 10);
+            cursor.next = sumNode;
+            cursor = sumNode;
+
+        }
+        return root.next;
+    }
+
 
 
 
