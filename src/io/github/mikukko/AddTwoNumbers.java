@@ -63,9 +63,8 @@ public class AddTwoNumbers {
 
             int sum = l1Val + l2Val + temp;
             temp = sum / 10;
-            ListNode sumNode = new ListNode(sum % 10);
-            cursor.next = sumNode;
-            cursor = sumNode;
+            cursor.next = new ListNode(sum % 10);
+            cursor = cursor.next;
 
         }
         return root.next;
