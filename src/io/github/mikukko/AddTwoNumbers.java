@@ -1,7 +1,7 @@
 package io.github.mikukko;
 
 /**
- * @author chens
+ * @author Mikukko
  * @date 2021/3/9
  */
 public class AddTwoNumbers {
