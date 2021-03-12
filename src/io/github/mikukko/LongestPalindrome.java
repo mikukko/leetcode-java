@@ -19,9 +19,49 @@ public class LongestPalindrome {
      * 输出："bab"
      * 解释："aba" 同样是符合题意的答案。
      * <p>
-     * 中心扩散
+     * 动态规划  中心扩散
      */
     public static String longestPalindrome(String s) {
+        //暴力解法
+        int length = s.length();
+        if (length < 2) {
+            return s;
+        }
+
+        char[] charArray = s.toCharArray();
+        int maxLen = 1;
+        //指针记录上次最长回文串时 i的位置
+        int begin = 0;
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = i + 1; j < length; j++) {
+                if (j - i + 1 > maxLen && valid(charArray, i, j)) {
+                    maxLen = j - i + 1;
+                    begin = i;
+                }
+            }
+        }
+
+        return s.substring(begin, begin + maxLen);
+    }
+
+    /**
+     * 验证是否为回文串的算法，S[left, right]
+     */
+    public static boolean valid(char[] charArray, int left, int right) {
+        while (left < right) {
+            if (charArray[left] != charArray[right]) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+
+    }
+
+
+    //排查问题
+    public static String longestPalindrome2(String s) {
         String res = "";
         //字符串长度等于1 和 等于2 单独判断
         if (s.length() == 1) {
