@@ -6,7 +6,7 @@ package io.github.mikukko;
  */
 public class LongestPalindrome {
     public static void main(String[] args) {
-        String s = longestPalindrome("aaaaa");
+        String s = longestPalindrome3("bb");
         System.out.println(s);
     }
 
@@ -106,4 +106,44 @@ public class LongestPalindrome {
         return s.substring(begin, begin + maxLen);
 
     }
+
+    /**
+     * 中心扩散 O(N^2)
+     */
+    public static String longestPalindrome3(String s) {
+        int length = s.length();
+        if (length < 2) {
+            return s;
+        }
+
+        int maxLen = 0;
+        int start = 0, end = 0;
+        char[] charArray = s.toCharArray();
+
+        for (int i = 0; i < length; i++) {
+            //如果回文中心为一个字符
+            int len1 = getLength(charArray, i, i);
+            //如果回文中心为两个字符
+            int len2 = getLength(charArray, i, i + 1);
+
+            maxLen = Math.max(len1, len2);
+            //如果最大回文串长度更新，则通过当前回文串长度和i的值计算出此时要截取的start和end的值
+            if (maxLen > end - start) {
+                end = i + maxLen / 2;
+                start = end + 1 - maxLen;
+            }
+        }
+        return s.substring(start, end + 1);
+
+    }
+
+    public static int getLength(char[] charArray, int left, int right) {
+        while (left > -1 && right < charArray.length && charArray[left] == charArray[right]) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
+
+
 }
