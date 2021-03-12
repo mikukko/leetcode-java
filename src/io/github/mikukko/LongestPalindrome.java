@@ -22,7 +22,7 @@ public class LongestPalindrome {
      * 动态规划  中心扩散
      */
     public static String longestPalindrome(String s) {
-        //暴力解法
+        //暴力解法 O(N^3)
         int length = s.length();
         if (length < 2) {
             return s;
@@ -32,6 +32,7 @@ public class LongestPalindrome {
         int maxLen = 1;
         //指针记录上次最长回文串时 i的位置
         int begin = 0;
+        //注意i和j的临界值，i最大为倒数第二个字符下标(length-2)，j:（i+1）为最后一个字符下标(length-1)
         for (int i = 0; i < length - 1; i++) {
             for (int j = i + 1; j < length; j++) {
                 if (j - i + 1 > maxLen && valid(charArray, i, j)) {
@@ -49,6 +50,7 @@ public class LongestPalindrome {
      */
     public static boolean valid(char[] charArray, int left, int right) {
         while (left < right) {
+            //左边界和右边界同时缩进，abcba ，判断去掉两个a后同时向中心缩进，判断子串是否相等，全部相等后即为回文串
             if (charArray[left] != charArray[right]) {
                 return false;
             }
@@ -59,37 +61,49 @@ public class LongestPalindrome {
 
     }
 
-
-    //排查问题
+    /**
+     * 动态规划 + 填表法
+     * 时间复杂度 O(N^2)
+     * <p>
+     * 状态转移方程：dp[i][j] = (S[i] == S[j]) and (dp[i+1][j-1])
+     */
     public static String longestPalindrome2(String s) {
-        String res = "";
-        //字符串长度等于1 和 等于2 单独判断
-        if (s.length() == 1) {
-            res = s;
-        } else if (s.length() == 2) {
-            if (s.charAt(0) == s.charAt(1)) {
-                res = s;
-            } else {
-                res = s.substring(0, 1);
-            }
-        } else {
-            for (int i = 1; i < s.length(); i++) {
-                int j = i - 1;
-                int k = i + 1;
-                if (j <= 0 && s.charAt(j) == s.charAt(i)) {
-                    res = s.substring(j, i + 1);
-                } else if (k <= s.length() - 1 && s.charAt(i) == s.charAt(k)) {
-                    res = s.substring(i, k + 1);
+        int length = s.length();
+        if (length < 2) {
+            return s;
+        }
+        int maxLen = 1;
+        //指针记录上次最长回文串时 i的位置
+        int begin = 0;
+
+        char[] charArray = s.toCharArray();
+
+        boolean[][] dp = new boolean[length][length];
+        //将对角线单个字符的回文状态设为true
+        for (int i = 0; i < length; i++) {
+            dp[i][i] = true;
+        }
+        //重点 循环方向 保证偏左下角元素的状态优先计算出来，右上角的状态要参考左下角的状态
+        for (int j = 1; j < length; j++) {
+            for (int i = 0; i < j; i++) {
+                if (charArray[i] != charArray[j]) {
+                    dp[i][j] = false;
+                } else if (j - i < 3) {
+                    dp[i][j] = true;
+                } else {
+                    dp[i][j] = dp[i + 1][j - 1];
                 }
-                while (j >= 0 && k <= s.length() - 1 && s.charAt(j) == s.charAt(k)) {
-                    String substring = s.substring(j, k + 1);
-                    res = res.length() > substring.length() ? res : substring;
-                    j--;
-                    k++;
+
+                //如果当前状态为回文子串，并且回文子串长度更长
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    maxLen = j - i + 1;
+                    begin = i;
                 }
+
             }
         }
 
-        return res;
+        return s.substring(begin, begin + maxLen);
+
     }
 }
