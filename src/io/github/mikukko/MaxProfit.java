@@ -8,6 +8,8 @@ public class MaxProfit {
 
 
     /**
+     * 122. 买卖股票的最佳时机 II
+     * <p>
      * 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
      * <p>
      * 设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。
@@ -56,4 +58,34 @@ public class MaxProfit {
         return total;
     }
 
+    /**
+     * 动态规划
+     * <p>
+     * 按第i天持股状态可分为手中无股和手中有股
+     * dp[i][0] 表示第i天交易完后手中没有股票的利润
+     * dp[i][1] 表示第i天交易完后手中持有股票的利润
+     * <p>
+     * 状态转移方程：
+     * dp[i][0] = max{dp[i - 1][0], dp[i - 1][1] + prices[i]}
+     * dp[i][1] = max{dp[i - 1][1], dp[i - 1][0] - prices[i]}
+     * <p>
+     * dp[0][0] = 0;
+     * dp[0][1] = -prices[0];
+     * <p>
+     * 在最后一天，手中持有股票的利润一定低于手中无股的利润，因此最后取dp[n-1][0]
+     *
+     * 自顶向下
+     */
+    public int maxProfit3(int[] prices) {
+        int n = prices.length;
+        int[][] dp = new int[n][2];
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+
+        for (int i = 1; i < n; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+        }
+        return dp[n - 1][0];
+    }
 }
