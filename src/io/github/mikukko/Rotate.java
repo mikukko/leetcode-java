@@ -33,11 +33,7 @@ public class Rotate {
         int[] rs = new int[n];
         System.arraycopy(nums, 0, rs, 0, nums.length);
         for (int i = 0; i < n; i++) {
-            if (y == 0) {
-                y = n;
-            }
-            nums[i] = rs[n - y];
-            y--;
+            nums[(i + k) % n] = rs[i];
         }
 
     }
