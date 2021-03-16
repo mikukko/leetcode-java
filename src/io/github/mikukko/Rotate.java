@@ -7,7 +7,7 @@ package io.github.mikukko;
 public class Rotate {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4, 5, 6, 7};
-        new Rotate().rotate(nums, 4);
+        new Rotate().rotate2(nums, 4);
 
         for (int num : nums) {
             System.out.println(num);
@@ -29,12 +29,31 @@ public class Rotate {
      */
     public void rotate(int[] nums, int k) {
         int n = nums.length;
-        int y = k % n;
         int[] rs = new int[n];
         System.arraycopy(nums, 0, rs, 0, nums.length);
         for (int i = 0; i < n; i++) {
             nums[(i + k) % n] = rs[i];
         }
 
+    }
+
+    /**
+     * 多次反转法
+     * 先把数组整个反转了；再反转前k个；再把剩下的n-k个反转了
+     */
+    public void rotate2(int[] nums, int k) {
+        int n = nums.length;
+        k %= n;
+        reverse(nums, 0, n - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, n - 1);
+    }
+
+    private void reverse(int[] nums, int begin, int end) {
+        for (int i = begin; i <= end; i++) {
+            int temp = nums[begin];
+            nums[begin++] = nums[end];
+            nums[end--] = temp;
+        }
     }
 }
