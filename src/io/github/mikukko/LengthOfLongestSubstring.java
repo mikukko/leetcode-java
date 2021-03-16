@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * 滑动窗口题目
- *
+ * <p>
  * 3. 无重复字符的最长子串
  * 30. 串联所有单词的子串
  * 76. 最小覆盖子串
@@ -35,7 +35,9 @@ public class LengthOfLongestSubstring {
     /**
      * 滑动窗口
      * <p>
-     * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+     * 3. 无重复字符的最长子串
+     * <p>
+     * 给定一个字符串，请你找出其中不含有重复字符的 最长子串的长度。
      * 0123
      * 输入: s = "abcabcbb"  "pwwkew"
      * 输出: 3
@@ -57,5 +59,5 @@ public class LengthOfLongestSubstring {
         }
         return max;
     }
-    
+
 }
