@@ -49,4 +49,23 @@ public class PlusOne {
         }
         return digits;
     }
+
+    /**
+     * 根据各个位置上是否是9以下的加1，如果有进位运算，则后续位置上加1
+     */
+    public int[] plusOne2(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i] += 1;
+            digits[i] %= 10;
+            //如果个位加1后不为零，即没有进位，加1结束，否则有进位运算，对十位、百位等进行进位运算
+            if (digits[i] != 0) {
+                return digits;
+            }
+        }
+        //循环结束后没有跳出方法，证明有位数进位的运算, 并且运算结束后各个位置上都为0
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+
+        return digits;
+    }
 }
