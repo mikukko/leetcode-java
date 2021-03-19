@@ -1,6 +1,7 @@
 package io.github.mikukko;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Mikukko
@@ -11,11 +12,11 @@ public class MinWindow {
     HashMap<Character, Integer> tMap = new HashMap<>();
 
     public static void main(String[] args) {
-        String s = "ADOBECODEBANCABCDD";
+        String s = "ADOBECODEBANC";
         String t = "ABC";
-        new MinWindow().minWindow(s, t);
+        String s1 = new MinWindow().minWindow(s, t);
 
-        //System.out.println();
+        System.out.println(s1);
     }
 
     /**
@@ -36,7 +37,7 @@ public class MinWindow {
         int left = 0, right = 0;
         int length = s.length();
         String sub = "";
-
+        String res = "";
         while (right < length) {
             //构建滑动窗口
             right++;
@@ -50,9 +51,26 @@ public class MinWindow {
                 }
             }
             //如果窗口中的元素包含t中的所有元素, 使用哈希表来判断是否包含字符
-
+            if (contains(tMap, sMap)) {
+                res = sub;
+                left++;
+            }
+            sMap.clear();
         }
 
-        return sub;
+        return res;
+    }
+
+    public boolean contains(Map<Character, Integer> tMap, Map<Character, Integer> sMap) {
+        //tMap中的元素，及其个数都在sMap中包含着，则返回true
+        for (Map.Entry<Character, Integer> entry : tMap.entrySet()) {
+            Character key = entry.getKey();
+            Integer value = entry.getValue();
+
+            if (!sMap.containsKey(key) || sMap.getOrDefault(key, 0) < value) {
+                return false;
+            }
+        }
+        return true;
     }
 }
