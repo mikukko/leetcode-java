@@ -1,27 +1,28 @@
 package io.github.mikukko;
 
-public class Question704 {
-
+public class Question35 {
     public static void main(String[] args) {
         int[] nums = {-1, 0, 3, 5, 9, 12};
-        int target = 2;
-        System.out.println(new Question704().search(nums, target));
+        int target = 21;
+        System.out.println(new Question35().searchInsert(nums, target));
     }
 
     /**
-     * 704. 二分查找
-     * 给定一个n个元素有序的（升序）整型数组nums 和一个目标值target，
-     * 写一个函数搜索nums中的 target，如果目标值存在返回下标，否则返回 -1。
+     * 35. 搜索插入位置
+     * 二分查找
+     * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。
+     * 如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+     *
+     * 请必须使用时间复杂度为 O(log n) 的算法。
      */
-    public int search(int[] nums, int target) {
+    public int searchInsert(int[] nums, int target) {
         int size = nums.length;
 
         int start = 0;
         int end = size - 1;
 
         while (start <= end) {
-            int index = (start + end) / 2;
-            //int index = (end - start) / 2 + start; //防止溢出
+            int index = (end - start) / 2 + start; //防止溢出
             if (nums[index] == target) {
                 return index;
             } else if (nums[index] > target) {
@@ -30,9 +31,7 @@ public class Question704 {
                 start = index + 1; // target 在右区间，所以[start + 1, end]
             }
         }
-        return -1;
+        return end + 1;
 
     }
-
-
 }
