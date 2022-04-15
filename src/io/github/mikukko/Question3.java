@@ -18,9 +18,9 @@ import java.util.HashMap;
  * @author Mikukko
  * @date 2021/3/10
  */
-public class LengthOfLongestSubstring {
+public class Question3 {
     public static void main(String[] args) {
-        LengthOfLongestSubstring length = new LengthOfLongestSubstring();
+        Question3 length = new Question3();
 
         System.out.println(length.lengthOfLongestSubstring("cdd"));
         System.out.println(length.lengthOfLongestSubstring("abcabcbb"));

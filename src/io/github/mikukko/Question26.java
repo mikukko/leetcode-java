@@ -4,10 +4,10 @@ package io.github.mikukko;
  * @author chens
  * @date 2021/3/11
  */
-public class RemoveDuplicates {
+public class Question26 {
     public static void main(String[] args) {
         int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        System.out.println(new RemoveDuplicates().removeDuplicates(nums));
+        System.out.println(new Question26().removeDuplicates(nums));
         System.out.println("-----------------");
         for (int num : nums) {
             System.out.println(num);

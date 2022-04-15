@@ -4,10 +4,10 @@ package io.github.mikukko;
  * @author Mikukko
  * @date 2021/3/16
  */
-public class Rotate {
+public class Question189 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4, 5, 6, 7};
-        new Rotate().rotate2(nums, 4);
+        new Question189().rotate2(nums, 4);
 
         for (int num : nums) {
             System.out.println(num);

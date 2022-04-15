@@ -8,10 +8,10 @@ import java.util.Map;
  * @author chens
  * @date 2021/3/17
  */
-public class SingleNumber {
+public class Question136 {
     public static void main(String[] args) {
         int[] nums = {4, 1, 2, 1, 2};
-        System.out.println(new SingleNumber().singleNumber3(nums));
+        System.out.println(new Question136().singleNumber3(nums));
     }
 
     /**

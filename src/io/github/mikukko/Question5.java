@@ -4,7 +4,7 @@ package io.github.mikukko;
  * @author Mikukko
  * @date 2021/3/11
  */
-public class LongestPalindrome {
+public class Question5 {
     public static void main(String[] args) {
         String s = longestPalindrome3("bb");
         System.out.println(s);

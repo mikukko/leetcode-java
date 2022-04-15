@@ -7,19 +7,21 @@ import java.util.Map;
  * @author Mikukko
  * @date 2021/3/10
  */
-public class MinWindow {
+public class Question76 {
     HashMap<Character, Integer> sMap = new HashMap<>();
     HashMap<Character, Integer> tMap = new HashMap<>();
 
     public static void main(String[] args) {
         String s = "ADOBECODEBANC";
         String t = "ABC";
-        String s1 = new MinWindow().minWindow(s, t);
+        String s1 = new Question76().minWindow(s, t);
 
         System.out.println(s1);
     }
 
     /**
+     * 76. 最小覆盖子串
+     * TODO
      * 滑动窗口
      * <p>
      * 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。

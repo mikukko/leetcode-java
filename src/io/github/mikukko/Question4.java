@@ -4,11 +4,11 @@ package io.github.mikukko;
  * @author Mikukko
  * @date 2021/3/11
  */
-public class FindMedianSortedArrays {
+public class Question4 {
     public static void main(String[] args) {
         int[] nums1 = {1, 2};
         int[] nums2 = {3, 4};
-        double v = new FindMedianSortedArrays().findMedianSortedArrays(nums1, nums2);
+        double v = new Question4().findMedianSortedArrays(nums1, nums2);
         System.out.println(v);
     }
 

@@ -6,11 +6,11 @@ import java.util.HashSet;
  * @author Mikukko
  * @date 2021/3/16
  */
-public class ContainsDuplicate {
+public class Question217 {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 1, 2, 3};
-        System.out.println(new ContainsDuplicate().containsDuplicate(nums));
+        System.out.println(new Question217().containsDuplicate(nums));
     }
 
 

@@ -4,10 +4,10 @@ package io.github.mikukko;
  * @author chens
  * @date 2021/3/17
  */
-public class PlusOne {
+public class Question66 {
     public static void main(String[] args) {
         int[] digits = {9, 9, 9, 9};
-        digits = new PlusOne().plusOne(digits);
+        digits = new Question66().plusOne(digits);
         for (int digit : digits) {
             System.out.println(digit);
         }

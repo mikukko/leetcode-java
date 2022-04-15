@@ -8,12 +8,12 @@ import java.util.Map;
  * @author chens
  * @date 2021/3/17
  */
-public class Intersect {
+public class Question350 {
     public static void main(String[] args) {
         int[] nums1 = {1, 2, 2, 1};
         int[] nums2 = {2, 2};
 
-        int[] arr = new Intersect().intersect(nums1, nums2);
+        int[] arr = new Question350().intersect(nums1, nums2);
 
         for (int i : arr) {
             System.out.println(i);
