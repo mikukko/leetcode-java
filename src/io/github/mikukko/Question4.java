@@ -29,11 +29,11 @@ public class Question4 {
         //然后i++，k++，反之则存nums2[j]的值，j++，k++
         //当nums1的元素转移完毕，则只转移剩余的nums2的元素
         //反之转移nums1的元素
-        int[] tatal;
+        int[] total;
         int n1Len = nums1.length;
         int n2Len = nums2.length;
         int len = n1Len + n2Len;
-        tatal = new int[len];
+        total = new int[len];
         double res;
         int n1 = 0;
         int n2 = 0;
@@ -41,22 +41,22 @@ public class Question4 {
         while (n1 < n1Len || n2 < n2Len) {
             if (n1 < n1Len && n2 < n2Len) {
                 if (nums1[n1] < nums2[n2]) {
-                    tatal[index++] = nums1[n1++];
+                    total[index++] = nums1[n1++];
                 } else {
-                    tatal[index++] = nums2[n2++];
+                    total[index++] = nums2[n2++];
                 }
-            } else if (n1 == n1Len && n2 < n2Len) {
-                tatal[index++] = nums2[n2++];
+            } else if (n1 == n1Len) {
+                total[index++] = nums2[n2++];
             } else {
-                tatal[index++] = nums1[n1++];
+                total[index++] = nums1[n1++];
             }
         }
 
         if (len % 2 == 0) {
-            double sum = (tatal[len / 2] + tatal[len / 2 - 1]);
+            double sum = (total[len / 2] + total[len / 2 - 1]);
             res = sum / 2;
         } else {
-            res = tatal[len / 2];
+            res = total[len / 2];
         }
 
         return res;
