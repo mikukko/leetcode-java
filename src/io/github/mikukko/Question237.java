@@ -16,6 +16,8 @@ public class Question237 {
      */
     public void deleteNode(ListNode node) {
         //把要删除的节点 转为它指向的下一个节点 让两个节点成为一个相同的节点
+        //先把当前节点修改为下一个节点, 再删除下一个节点
+        //既然不能先删除自己，那就把自己整容成儿子，再假装自己就是儿子来养活孙子
         node.val = node.next.val;
         node.next = node.next.next;
     }
